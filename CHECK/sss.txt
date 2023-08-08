@@ -1,0 +1,13 @@
+Hello, good morning. The company, I work with previously purchased the rice lake 880 performance plus scale systems. We are having some issue with one of the scales currently, the LED display module has gone off, and the Bluetooth indicator is blinking continuously when power is supplied to the device. I couldnt find any troubleshooting advice on what the problem could be and how to solve it.
+1:39:16 PM
+We would therefore like your assistance in order to be able to solve the problem, thank you. 
+
+
+Truck ID   1112
+
+Gross 12345670 kg
+
+05:20AM 08/02/2023
+
+
+b'\r\nTruck ID   5556\r\n\r\nGross       10 kg\r\n\r\n06:24AM 08/02/2023'

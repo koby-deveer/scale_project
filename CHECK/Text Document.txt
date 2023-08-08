@@ -1,0 +1,2 @@
+b'\r\nTruck ID   0808\r\n\r\nGross       10 kg\r\n\r\n06:42AM 08/02/2023'
+b'\r\n\r\nTruck ID   5699\r\n\r\nGross        5 kg\r\n\r\n06:43AM 08/02/20'
