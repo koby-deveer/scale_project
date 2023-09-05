@@ -1,6 +1,8 @@
 import serial
 import openpyxl
 from datetime import date,datetime
+import SQL
+import  PrinterConnect
 
 #Setting scale port parameters
 ConnectScale= serial.Serial(port='COM6',baudrate=9600,timeout=100)
@@ -28,7 +30,8 @@ while ConnectScale.is_open:
     #Retrieve data coming from Scale on port COM6
     RealData=ConnectScale.read(60).decode()
     #RealData=ScaleConnecT.readline().decode()
-
+    #printerData=ConnectScale.read(60).decode()
+    printerData=RealData
     #If the size of real data is above 60, take from the extract the ID, Weight and Date
     if len(RealData)>=50:
         RealData=RealData.splitlines()
@@ -52,6 +55,9 @@ while ConnectScale.is_open:
 
         # Save the data added
         Scale_Data.save(r"C:\Users\Kody\Desktop\VALCO\Valco\Scale\Scale project\Scale_Data.xlsx")
+
+        SetSQL=SQL.SQL(ExData)
+        SetPrinter=PrinterConnect.Printer(True,printerData)
     
         # Remove all data in the read buffer
         ConnectScale.reset_input_buffer()
