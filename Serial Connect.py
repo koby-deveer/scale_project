@@ -1,33 +1,17 @@
 import serial
-import openpyxl
-from datetime import date,datetime
-import SQL
-import  PrinterConnect
+from datetime import date, time, datetime
 
-#Setting scale port parameters
-ConnectScale= serial.Serial(port='COM6',baudrate=9600,timeout=2)
+#Setting up com port settings
+ScaleConnecT= serial.Serial(port="COM6",baudrate=9600,timeout=1)
 
-#Opening Excel workbook
-Scale_Data=openpyxl.load_workbook(r"C:\Users\Kody\Desktop\VALCO\Valco\Scale\Scale project\Scale_Data.xlsx")
-
-#Getting the active sheet
-DataSheet=Scale_Data.active
-
-# Iterate over rows in order to most recently filled row
-for row in DataSheet.iter_rows():
-    # Get the current row index
-    row_index = row[0].row
-
-    # Do something with the row index
-    #print(f"Current row index: {row_index}")
-
-# Since the code above provides the number of the last formatted row, we add one in order to add data to a new row
-count=row_index+1
-
-#Check to see if the COM6 port is open, if true then code the while loop will run
-while ConnectScale.is_open:
-
-    SerialData=ConnectScale.read(120)
+Check=ScaleConnecT.is_open
+InputD=[]
+while Check:
+    #Check coneection
+    #Read Data1
+    #RealData=ScaleConnecT.readline()
+    
+    SerialData=ScaleConnecT.read(110)
     if len(SerialData)>5:
         InputD=SerialData.decode().splitlines()
         print(InputD)
@@ -35,10 +19,9 @@ while ConnectScale.is_open:
         
         #WeighIn Mode
         if dataSize >1 and dataSize <90:
-            #set weigh in mode 
-            printerDataIn=SerialData
+            #set weigh in mode function
             Gross=""
-            print("Weigh In")
+
             for item in range(len(InputD)+1):
                 match item:
                     case 1:
@@ -57,19 +40,7 @@ while ConnectScale.is_open:
                     case 5:
                         Date=InputD[item][0:7]
                         Time=InputD[item][8:]
-            ExData=[TruckId,Gross,Date,Time]
-
-            #For loop to add to the new row and columns
-            for column in range(1,5,1):
-                rows=count
-                DataSheet.cell(rows,column).value=ExData[column-1]
-            count+=1
-
-            # Save the data added
-            Scale_Data.save(r"C:\Users\Kody\Desktop\VALCO\Valco\Scale\Scale project\Scale_Data.xlsx")
-
-            SetSQL=SQL.SQL_IN(ExData)
-            SetPrinterIn=PrinterConnect.Printer(True,printerDataIn)
+            
             print(TruckId)
             print(Gross)
             print(Date)
@@ -78,8 +49,6 @@ while ConnectScale.is_open:
         #WeigghOut Mode
         elif dataSize>100:
             #set weighout mode
-            printerDataOut=SerialData
-            print("Weigh Out")
             Gross=""
             Net=""
             Tare=""
@@ -122,42 +91,33 @@ while ConnectScale.is_open:
                     case 6:
                         Date=InputD[item][0:7]
                         Time=InputD[item][8:]
-            ExData=[TruckId,Gross,Tare,Net,Date,Time]
-
-            #For loop to add to the new row and columns
-           # for column in range(1,5,1):
-            #    rows=count
-             #   DataSheet.cell(rows,column).value=ExData[column-1]
-            #count+=1
-
-            # Save the data added
-            #Scale_Data.save(r"C:\Users\Kody\Desktop\VALCO\Valco\Scale\Scale project\Scale_Data.xlsx")
-
-            SetSQL=SQL.SQL_OUT(ExData)
-            SetPrinterOut=PrinterConnect.Printer(True,printerDataOut)
-
             print(TruckId)
             print(Gross)
             print(Tare)
             print(Net)
             print(Date)
             print(Time)
-        
 
-        
     
-        # Remove all data in the read buffer
-        ConnectScale.reset_input_buffer() 
+    
 
-#Close Scale and Excel file
-ConnectScale.close
-Scale_Data.close()
+ScaleConnecT.close        
 
 
-
-
-
-
-
-
-
+#Input=InputData.join(SerialData)
+    #InputData.append(SerialData)
+    #Input=SerialData.splitlines()
+    #print(len(InputData))
+    #print(type(InputData))
+    #RealData=ScaleConnecT.read().decode()
+   
+    #print(len(RealData))
+    #Ids=RealData[1][11:]
+    #print(Ids)
+    #Weight=RealData[3][12:14]
+    #print(Weight)
+    #Time=RealData[5][0:8]
+    #print(Time)
+    #Dates=date.today()
+    
+    #print(Dates)

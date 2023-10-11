@@ -1,0 +1,40 @@
+[b'Truck ID  1111\r\n', b'\r\n', b'Gross       35 kg RECALLED\r\n', b'Tare        10 kg \r\n', b'Net         25 kg\r\n', b'\r\n', b'09:29AM 09/08/2023\r\n']
+[b'\r\n', b'Truck ID   1111\r\n', b'\r\n', b'Gross       10 kg\r\n', b'\r\n', b'09:30AM 09/08/2023\r\n']
+[b'Truck ID  1111\r\n', b'\r\n', b'Gross       20 kg \r\n', b'Tare        10 kg RECALLED\r\n', b'Net         10 kg\r\n', b'\r\n', b'09:30AM 09/08/2023\r\n']
+[b'\r\n', b'Truck ID   1111\r\n', b'\r\n', b'Gross       10 kg\r\n', b'\r\n', b'09:30AM 09/08/2023\r\n']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                             12345678901234
+['', 'Truck ID   1111', '', 'Gross       10 kg', '', '08:54AM 09/13/2023']
+
+
+
+
+
+
+                                              01234567890123                012345678901
+['Truck ID  1111', '', 'Gross       40 kg ', 'Tare        10 kg RECALLED', 'Net         30 kg', '', '08:54AM 09/13/2023']

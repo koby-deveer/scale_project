@@ -3,7 +3,7 @@ import mysql.connector
 
 # Creating connection object
 
-def SQL(data):
+def SQL_IN(data):
 	mydb = mysql.connector.connect(
 	host = "localhost",
 	user = "root",
@@ -14,8 +14,25 @@ def SQL(data):
 	# Printing the connection object
 	print(mydb)
 	cursor=mydb.cursor()
-	dbFunc="INSERT INTO RECORD VALUES(%s,%s,%s,%s)"
+	dbFunc="INSERT INTO WEIGHIN VALUES(%s,%s,%s,%s)"
 	cursor.execute(dbFunc,data)
 	mydb.commit()
 	
+	mydb.close()
+
+
+
+def SQL_OUT(data):
+	mydb = mysql.connector.connect(
+	host = "localhost",
+	user = "root",
+	password = "valcoscale12345@",
+	database="VALCO_RECORDS"
+	)
+
+	print(mydb)
+	cursor=mydb.cursor()
+	dbFunc="INSERT INTO WEIGHOUT VALUES(%s,%s,%s,%s,%s,%s)"
+	cursor.execute(dbFunc,data)
+	mydb.commit()
 	mydb.close()

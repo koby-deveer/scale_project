@@ -1,0 +1,10 @@
+PrintInfo=False
+if Check:
+    ScaleFormat=" \r\nTruck ID  7412580963\r\n\r\nGross       10 kg\r\n\r\n03:24AM 08/03/2023\r\n"
+    BytesInfo=ScaleFormat.encode()
+
+    PrintInfo=True
+    if PrintInfo==True:
+        ScaleConnecT.write(BytesInfo)
+
+PrintInfo=False
