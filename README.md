@@ -1,54 +1,70 @@
-# Scale Data Recording Project
+# Industrial Scale Data Management System
 
-This project involves reading data from a weighing scale connected to the computer's COM6 port and recording the data in an Excel workbook. The Python script utilizes the `serial` and `openpyxl` libraries for communication with the scale and manipulation of the Excel workbook, respectively. thus, automating data collection of the Haul Road Scale.
+This repository contains the software for managing and processing weigh-in and weigh-out data from industrial scales used in logistics or manufacturing settings. The system automates the capture, processing, and logging of scale data, enhancing accuracy, efficiency, and traceability in industrial operations.
 
+## Key Components
 
+### Scale Communication
+- Manages serial communication with an industrial scale.
+- Ensures accurate and efficient data reception.
 
-## Setup and Configuration
+### Data Processing
+- Analyzes and processes raw data to differentiate between weigh-in and weigh-out events.
+- Extracts and formats relevant information for storage and printing.
 
-1. Connect the weighing scale to the computer's COM6 port.
-2. Ensure that Python is installed on your system along with the required libraries (`serial`, `openpyxl`).
+### Database Operations
+- Stores processed data in a SQL database, facilitating easy management and retrieval.
 
-## Code Overview
+### Printer Connectivity
+- Enables sending formatted data directly to a printer for record-keeping.
 
-The provided Python script performs the following tasks:
+### Logging System
+- Implements informational and error logging for system monitoring and troubleshooting.
 
-1. **Serial Port Configuration**: The script sets up a serial connection (`ConnectScale`) to the COM6 port at a baud rate of 9600 with a timeout of 100 seconds.
+## System Operations
 
-2. **Excel Workbook Initialization**: The script opens an Excel workbook (`Scale_Data.xlsx`) located at `C:\Users\Kody\Desktop\VALCO\Valco\Scale\Scale project\`. It accesses the active sheet (`DataSheet`) for data recording.
+- **Initialization**: Establishes a connection to the scale and initializes data streams.
+- **Data Handling**: Continuously reads data from the scale, processing it according to predefined criteria.
+- **Logging and Storage**: Captures and logs data and errors into separate log files. Stores data in a MySQL database.
 
-3. **Iterating Over Rows**: The script iterates through the rows of the Excel sheet to find the most recently filled row and extracts its index. This index will be used to determine where new data should be added.
+## Technologies Used
 
-4. **Data Retrieval and Processing Loop**: The script enters a loop that continuously reads data from the scale's COM6 port as long as the port is open. It reads the incoming data (up to 60 characters) and decodes it.
+- **Python**: For overall programming due to its support for serial communication, data processing, and database operations.
+- **MySQL**: Used for robust data management capabilities.
+- **Serial Communication**: Handles real-time data transmission between the scale and the system.
+- **Logging**: Utilizes Python’s built-in `logging` library.
 
-5. **Data Extraction**: If the received data length is above a certain threshold (50 characters), the script extracts relevant information such as ID, Weight, Time, and Date from the received data. These values are then processed further.
+## Objectives and Benefits
 
-6. **Data Recording in Excel**: The extracted data (ID, Weight, Time, and Date) are added to a list (`ExData`). The script uses a loop to iterate through the list and add the data to a new row in the Excel sheet.
+- **Automation**: Reduces manual entry errors, increasing operational efficiency.
+- **Accuracy**: Ensures precise data capture, critical for weight measurements.
+- **Traceability**: Enhances tracking capabilities and compliance with regulations.
+- **Maintainability**: Designed for ease of maintenance and future upgrades.
 
-7. **Saving Excel Data**: After data is added to the Excel sheet, the workbook is saved to persist the changes.
+## Installation
 
-8. **Buffer Management**: The script clears the input buffer of the serial connection to remove any residual data.
-
-9. **Loop Termination**: The loop continues until the serial port is open. Once the loop terminates, the serial connection to the scale and the Excel workbook are closed.
+```bash
+git clone https://github.com/yourusername/industrial-scale-management.git
+cd industrial-scale-management
+pip install -r requirements.txt
+```
 
 ## Usage
 
-1. Make sure the scale is properly connected to COM6 port.
-2. Run the provided Python script.
-3. The script will continuously read data from the scale and record it in the Excel workbook.
+Run the main program:
 
-Note: Adjust file paths, COM port, and other configurations as necessary for your specific setup.
+```python
+python main.py
+```
 
-## Dependencies
+Ensure you configure your system's serial ports and database credentials before running the application.
 
-- Python (>=3.x)
-- `serial` library (for serial communication)
-- `openpyxl` library (for working with Excel files)
+## Contributing
+
+Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-**Disclaimer**: This description is based on the provided code snippet and assumes the accuracy of the code's functionality as described. Additional context or code details not included in the provided snippet could influence the actual project behavior.
+[MIT](https://choosealicense.com/licenses/mit/)
